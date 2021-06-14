@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}  
+
+<h1 class="text-center mb-3">AUI Dinner Elections</h1>
+
+{% if latest_question_list %}
+<div class="row">
+{% for question in latest_question_list %}
+<div class="col-lg-3">
+<div class="card-mb-4">
+    <div class="card-body">
+        <p class="lead">{{ question.question_text }}</p>
+        <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary btn-sm">Vote Now</a>
+        <!--<a href="{% url 'polls:results' question.id %}" class="btn btn-secondary btn-sm">Results</a>-->
+    </div>
+</div>
+</div>
+
+{% endfor %}
+</div>
+{% else %}
+<p>No polls available</p>
+{% endif %}
+{% endblock content %}
